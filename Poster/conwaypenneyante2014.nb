@@ -1,0 +1,651 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 8.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[     19274,        642]
+NotebookOptionsPosition[     16338,        540]
+NotebookOutlinePosition[     16846,        559]
+CellTagsIndexPosition[     16803,        556]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Conway/Penney-Ante Calculations", "Section"],
+
+Cell[CellGroupData[{
+
+Cell["Introduction", "Subsection"],
+
+Cell["\<\
+In these computations, ab = 1/q AB(1/q), where AB is the correlation \
+polynomial, and similarly for the three other cases.\
+\>", "Text",
+ CellChangeTimes->{{3.6001811561269875`*^9, 3.600181158795987*^9}, 
+   3.600774262798066*^9}],
+
+Cell["\<\
+F is the generating function that counts strings of length n that avoid both \
+A and B. \
+\>", "Text"],
+
+Cell["\<\
+GA is the generating function for strings of length n that avoid B, and with \
+a first occurrence of A at the end. \
+\>", "Text",
+ CellChangeTimes->{3.6007743021220665`*^9}],
+
+Cell["\<\
+GB is the generating function for strings of length n that avoid A, and with \
+a first occurrence of B at the end. \
+\>", "Text",
+ CellChangeTimes->{3.6007742967310667`*^9}],
+
+Cell["F(1/2) = expected length of the game.", "Text"],
+
+Cell["\<\
+GA(1/2) = probability that A will win.\
+\>", "Text",
+ CellChangeTimes->{3.6007743046820664`*^9}],
+
+Cell["\<\
+GB(1/2) = probability that B will win.\
+\>", "Text",
+ CellChangeTimes->{3.6007743072100663`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Equations", "Subsection"],
+
+Cell[BoxData[
+ RowBox[{"Clear", "[", 
+  RowBox[{"F", ",", "GA", ",", "GB"}], "]"}]], "Input",
+ CellChangeTimes->{{3.6007743137710667`*^9, 3.6007743161380663`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Solve", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"1", "-", 
+          RowBox[{"2", "q"}]}], ")"}], " ", "F"}], " ", "+", " ", "GA", " ", 
+       "+", " ", "GB"}], " ", "\[Equal]", "1"}], ",", " ", 
+     RowBox[{
+      RowBox[{"F", " ", "-", "  ", 
+       RowBox[{"aa", " ", "GA"}], " ", "-", "  ", 
+       RowBox[{"ba", " ", "GB"}]}], "\[Equal]", "0"}], ",", " ", 
+     RowBox[{
+      RowBox[{"F", " ", "-", "  ", 
+       RowBox[{"ab", " ", "GA"}], " ", "-", " ", 
+       RowBox[{"bb", " ", "GB"}]}], " ", "\[Equal]", "0"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"F", ",", "GA", ",", "GB"}], "}"}]}], "]"}]], "Input",
+ CellChangeTimes->{
+  3.6001811405759873`*^9, {3.600181270215987*^9, 3.600181295125987*^9}, {
+   3.600181339682987*^9, 3.600181382512987*^9}, {3.6007743237230663`*^9, 
+   3.6007743459450665`*^9}, {3.6008773563770714`*^9, 3.60087736578261*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"F", "\[Rule]", 
+     RowBox[{"-", 
+      FractionBox[
+       RowBox[{
+        RowBox[{"ab", " ", "ba"}], "-", 
+        RowBox[{"aa", " ", "bb"}]}], 
+       RowBox[{"aa", "-", "ab", "-", "ba", "-", 
+        RowBox[{"ab", " ", "ba"}], "+", "bb", "+", 
+        RowBox[{"aa", " ", "bb"}], "+", 
+        RowBox[{"2", " ", "ab", " ", "ba", " ", "q"}], "-", 
+        RowBox[{"2", " ", "aa", " ", "bb", " ", "q"}]}]]}]}], ",", 
+    RowBox[{"GA", "\[Rule]", 
+     RowBox[{"-", 
+      FractionBox[
+       RowBox[{"ba", "-", "bb"}], 
+       RowBox[{"aa", "-", "ab", "-", "ba", "-", 
+        RowBox[{"ab", " ", "ba"}], "+", "bb", "+", 
+        RowBox[{"aa", " ", "bb"}], "+", 
+        RowBox[{"2", " ", "ab", " ", "ba", " ", "q"}], "-", 
+        RowBox[{"2", " ", "aa", " ", "bb", " ", "q"}]}]]}]}], ",", 
+    RowBox[{"GB", "\[Rule]", 
+     RowBox[{"-", 
+      FractionBox[
+       RowBox[{"aa", "-", "ab"}], 
+       RowBox[{
+        RowBox[{"-", "aa"}], "+", "ab", "+", "ba", "+", 
+        RowBox[{"ab", " ", "ba"}], "-", "bb", "-", 
+        RowBox[{"aa", " ", "bb"}], "-", 
+        RowBox[{"2", " ", "ab", " ", "ba", " ", "q"}], "+", 
+        RowBox[{"2", " ", "aa", " ", "bb", " ", "q"}]}]]}]}]}], "}"}], 
+  "}"}]], "Output",
+ CellChangeTimes->{{3.600181167026987*^9, 3.6001811943559875`*^9}, 
+   3.600181290182987*^9, 3.6001813331299877`*^9, {3.6001813710739875`*^9, 
+   3.600181376519987*^9}, 3.6007743506120663`*^9, 3.600877370580884*^9}]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Conway\[CloseCurlyQuote]s Formulas", "Subsection",
+ CellChangeTimes->{{3.6007743686300664`*^9, 3.6007743791250668`*^9}}],
+
+Cell["First we compute F(1/2) = expected duration of the game:", "Text"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"-", 
+   FractionBox[
+    RowBox[{
+     RowBox[{"ab", " ", "ba"}], "-", 
+     RowBox[{"aa", " ", "bb"}]}], 
+    RowBox[{"aa", "-", "ab", "-", "ba", "-", 
+     RowBox[{"ab", " ", "ba"}], "+", "bb", "+", 
+     RowBox[{"aa", " ", "bb"}], "+", 
+     RowBox[{"2", " ", "ab", " ", "ba", " ", "q"}], "-", 
+     RowBox[{"2", " ", "aa", " ", "bb", " ", "q"}]}]]}], "/.", 
+  RowBox[{"q", "\[Rule]", 
+   RowBox[{"1", "/", "2"}]}]}]], "Input",
+ CellChangeTimes->{3.6001812018499875`*^9, 3.6001814015419874`*^9}],
+
+Cell[BoxData[
+ RowBox[{"-", 
+  FractionBox[
+   RowBox[{
+    RowBox[{"ab", " ", "ba"}], "-", 
+    RowBox[{"aa", " ", "bb"}]}], 
+   RowBox[{"aa", "-", "ab", "-", "ba", "+", "bb"}]]}]], "Output",
+ CellChangeTimes->{3.6001812084689875`*^9, 3.6001814035959873`*^9, 
+  3.600774393772066*^9}]
+}, Open  ]],
+
+Cell["\<\
+Next we compute GA(1/2)=probability of A winning.\
+\>", "Text",
+ CellChangeTimes->{{3.6007743886130667`*^9, 3.6007743888840666`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"-", 
+   FractionBox[
+    RowBox[{"ba", "-", "bb"}], 
+    RowBox[{"aa", "-", "ab", "-", "ba", "-", 
+     RowBox[{"ab", " ", "ba"}], "+", "bb", "+", 
+     RowBox[{"aa", " ", "bb"}], "+", 
+     RowBox[{"2", " ", "ab", " ", "ba", " ", "q"}], "-", 
+     RowBox[{"2", " ", "aa", " ", "bb", " ", "q"}]}]]}], "/.", " ", 
+  RowBox[{"q", "\[Rule]", 
+   RowBox[{"1", "/", "2"}]}]}]], "Input",
+ CellChangeTimes->{{3.6001814208629875`*^9, 3.6001814300139875`*^9}, 
+   3.6008773937682104`*^9}],
+
+Cell[BoxData[
+ RowBox[{"-", 
+  FractionBox[
+   RowBox[{"ba", "-", "bb"}], 
+   RowBox[{"aa", "-", "ab", "-", "ba", "+", "bb"}]]}]], "Output",
+ CellChangeTimes->{{3.6001814244779873`*^9, 3.6001814308909874`*^9}, 
+   3.6007743969410667`*^9, 3.6008773990845146`*^9}]
+}, Open  ]],
+
+Cell["\<\
+Finally, we compute GB(1/2) = probability of B winning.\
+\>", "Text",
+ CellChangeTimes->{{3.6007743997960663`*^9, 3.600774400100066*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"-", 
+   FractionBox[
+    RowBox[{"aa", "-", "ab"}], 
+    RowBox[{
+     RowBox[{"-", "aa"}], "+", "ab", "+", "ba", "+", 
+     RowBox[{"ab", " ", "ba"}], "-", "bb", "-", 
+     RowBox[{"aa", " ", "bb"}], "-", 
+     RowBox[{"2", " ", "ab", " ", "ba", " ", "q"}], "+", 
+     RowBox[{"2", " ", "aa", " ", "bb", " ", "q"}]}]]}], " ", "/.", " ", 
+  RowBox[{"q", "\[Rule]", 
+   RowBox[{"1", "/", "2"}]}]}]], "Input",
+ CellChangeTimes->{{3.600181435866987*^9, 3.6001814429409876`*^9}, 
+   3.600877407031969*^9}],
+
+Cell[BoxData[
+ RowBox[{"-", 
+  FractionBox[
+   RowBox[{"aa", "-", "ab"}], 
+   RowBox[{
+    RowBox[{"-", "aa"}], "+", "ab", "+", "ba", "-", "bb"}]]}]], "Output",
+ CellChangeTimes->{3.6001814446979876`*^9, 3.6007744061550665`*^9, 
+  3.6008774087780685`*^9}]
+}, Open  ]],
+
+Cell[" The last two results combine to give Conway's odds formula.", "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Example", "Subsection",
+ CellChangeTimes->{{3.6001814553459873`*^9, 3.6001814625519876`*^9}}],
+
+Cell["\<\
+Suppose we have the strings 
+    A = HTTT
+    B = TTTH\
+\>", "Text",
+ CellChangeTimes->{{3.6001814670089874`*^9, 3.6001814921339874`*^9}, {
+  3.6001815668819876`*^9, 3.6001815688329873`*^9}, {3.6007761967698727`*^9, 
+  3.6007762152657223`*^9}}],
+
+Cell["Compute aa, ab, ba, bb :", "Text",
+ CellChangeTimes->{{3.6007762239965954`*^9, 3.600776242626458*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"aa", " ", "=", " ", 
+   RowBox[{"1", "/", 
+    RowBox[{"q", "^", "4"}]}]}], ";", "  ", 
+  RowBox[{"ab", " ", "=", " ", 
+   RowBox[{
+    RowBox[{"1", "/", "q"}], " ", "+", " ", 
+    RowBox[{"1", "/", 
+     RowBox[{"q", "^", "2"}]}], " ", "+", " ", 
+    RowBox[{"1", "/", 
+     RowBox[{"q", "^", "3"}]}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"bb", " ", "=", " ", 
+   RowBox[{"1", "/", 
+    RowBox[{"q", "^", "4"}]}]}], ";", "  ", 
+  RowBox[{"ba", " ", "=", " ", 
+   RowBox[{"1", "/", "q"}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.6007764365308466`*^9, 3.6007764703962326`*^9}}],
+
+Cell["Probability of A winning :", "Text",
+ CellChangeTimes->{{3.600776481525346*^9, 3.6007764933875318`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"-", 
+   FractionBox[
+    RowBox[{"ba", "-", "bb"}], 
+    RowBox[{"aa", "-", "ab", "-", "ba", "-", 
+     RowBox[{"ab", " ", "ba"}], "+", "bb", "+", 
+     RowBox[{"aa", " ", "bb"}], "+", 
+     RowBox[{"2", " ", "ab", " ", "ba", " ", "q"}], "-", 
+     RowBox[{"2", " ", "aa", " ", "bb", " ", "q"}]}]]}], "/.", " ", 
+  RowBox[{"q", "\[Rule]", 
+   RowBox[{"1", "/", "2"}]}]}]], "Input",
+ CellChangeTimes->{{3.6001814208629875`*^9, 3.6001814300139875`*^9}, 
+   3.6008774230158834`*^9}],
+
+Cell[BoxData[
+ FractionBox["7", "8"]], "Output",
+ CellChangeTimes->{
+  3.60077650926812*^9, {3.6008774244429646`*^9, 3.600877432490425*^9}}]
+}, Open  ]],
+
+Cell["Probability of B winning :", "Text",
+ CellChangeTimes->{{3.600776481525346*^9, 3.600776523085501*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"-", 
+   FractionBox[
+    RowBox[{"aa", "-", "ab"}], 
+    RowBox[{
+     RowBox[{"-", "aa"}], "+", "ab", "+", "ba", "+", 
+     RowBox[{"ab", " ", "ba"}], "-", "bb", "-", 
+     RowBox[{"aa", " ", "bb"}], "-", 
+     RowBox[{"2", " ", "ab", " ", "ba", " ", "q"}], "+", 
+     RowBox[{"2", " ", "aa", " ", "bb", " ", "q"}]}]]}], " ", "/.", " ", 
+  RowBox[{"q", "\[Rule]", 
+   RowBox[{"1", "/", "2"}]}]}]], "Input",
+ CellChangeTimes->{{3.6001814208629875`*^9, 3.6001814300139875`*^9}, {
+   3.6007765411193047`*^9, 3.600776557007893*^9}, 3.6008774449511375`*^9}],
+
+Cell[BoxData[
+ FractionBox["1", "8"]], "Output",
+ CellChangeTimes->{
+  3.60077650926812*^9, {3.6007765421014028`*^9, 3.6007765580379963`*^9}, 
+   3.600877447066259*^9}]
+}, Open  ]],
+
+Cell["Expected length of game :", "Text",
+ CellChangeTimes->{{3.600776560696262*^9, 3.6007765700141935`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"-", 
+   FractionBox[
+    RowBox[{
+     RowBox[{"ab", " ", "ba"}], "-", 
+     RowBox[{"aa", " ", "bb"}]}], 
+    RowBox[{"aa", "-", "ab", "-", "ba", "-", 
+     RowBox[{"ab", " ", "ba"}], "+", "bb", "+", 
+     RowBox[{"aa", " ", "bb"}], "+", 
+     RowBox[{"2", " ", "ab", " ", "ba", " ", "q"}], "-", 
+     RowBox[{"2", " ", "aa", " ", "bb", " ", "q"}]}]]}], "/.", 
+  RowBox[{"q", "\[Rule]", 
+   RowBox[{"1", "/", "2"}]}]}], "\[IndentingNewLine]", 
+ RowBox[{"%", "//", "N"}]}], "Input",
+ CellChangeTimes->{{3.600776592912483*^9, 3.600776594800672*^9}}],
+
+Cell[BoxData[
+ FractionBox["57", "4"]], "Output",
+ CellChangeTimes->{{3.600776588503042*^9, 3.600776595207713*^9}}],
+
+Cell[BoxData["14.25`"], "Output",
+ CellChangeTimes->{{3.600776588503042*^9, 3.600776595207713*^9}}]
+}, Open  ]],
+
+Cell["Expected waiting time for A :", "Text",
+ CellChangeTimes->{{3.600776604488641*^9, 3.600776613120504*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"aa", " ", "/.", " ", 
+  RowBox[{"q", "\[Rule]", " ", 
+   RowBox[{"1", "/", "2"}]}]}]], "Input",
+ CellChangeTimes->{{3.60077662468366*^9, 3.6007766326414557`*^9}}],
+
+Cell[BoxData["16"], "Output",
+ CellChangeTimes->{3.600776633606552*^9}]
+}, Open  ]],
+
+Cell["Expected waiting time for B :", "Text",
+ CellChangeTimes->{{3.600776641418333*^9, 3.6007766528174734`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"bb", " ", "/.", " ", 
+  RowBox[{"q", "\[Rule]", " ", 
+   RowBox[{"1", "/", "2"}]}]}]], "Input",
+ CellChangeTimes->{{3.60077662468366*^9, 3.600776655665758*^9}}],
+
+Cell[BoxData["16"], "Output",
+ CellChangeTimes->{3.600776656519843*^9}]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Generating functions", "Subsection",
+ CellChangeTimes->{{3.6007766595801497`*^9, 3.600776681446336*^9}}],
+
+Cell["\<\
+Generating function for f(n) = number strings of length n avoiding both A = \
+HTTT and B = TTTH :\
+\>", "Text",
+ CellChangeTimes->{{3.6007771909470596`*^9, 3.6007772233500595`*^9}, {
+  3.6007773518700595`*^9, 3.6007773558220596`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"-", 
+  FractionBox[
+   RowBox[{
+    RowBox[{"ab", " ", "ba"}], "-", 
+    RowBox[{"aa", " ", "bb"}]}], 
+   RowBox[{"aa", "-", "ab", "-", "ba", "-", 
+    RowBox[{"ab", " ", "ba"}], "+", "bb", "+", 
+    RowBox[{"aa", " ", "bb"}], "+", 
+    RowBox[{"2", " ", "ab", " ", "ba", " ", "q"}], "-", 
+    RowBox[{"2", " ", "aa", " ", "bb", " ", "q"}]}]]}], "\[IndentingNewLine]", 
+ RowBox[{"%", "//", "Simplify"}]}], "Input",
+ CellChangeTimes->{{3.6007772391910596`*^9, 3.6007772593170595`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"-", 
+  FractionBox[
+   RowBox[{
+    RowBox[{"-", 
+     FractionBox["1", 
+      SuperscriptBox["q", "8"]]}], "+", 
+    FractionBox[
+     RowBox[{
+      FractionBox["1", 
+       SuperscriptBox["q", "3"]], "+", 
+      FractionBox["1", 
+       SuperscriptBox["q", "2"]], "+", 
+      FractionBox["1", "q"]}], "q"]}], 
+   RowBox[{
+    RowBox[{"2", " ", 
+     RowBox[{"(", 
+      RowBox[{
+       FractionBox["1", 
+        SuperscriptBox["q", "3"]], "+", 
+       FractionBox["1", 
+        SuperscriptBox["q", "2"]], "+", 
+       FractionBox["1", "q"]}], ")"}]}], "+", 
+    FractionBox["1", 
+     SuperscriptBox["q", "8"]], "-", 
+    FractionBox["2", 
+     SuperscriptBox["q", "7"]], "+", 
+    FractionBox["2", 
+     SuperscriptBox["q", "4"]], "-", 
+    FractionBox["1", 
+     SuperscriptBox["q", "3"]], "-", 
+    FractionBox["1", 
+     SuperscriptBox["q", "2"]], "-", 
+    FractionBox["2", "q"], "-", 
+    FractionBox[
+     RowBox[{
+      FractionBox["1", 
+       SuperscriptBox["q", "3"]], "+", 
+      FractionBox["1", 
+       SuperscriptBox["q", "2"]], "+", 
+      FractionBox["1", "q"]}], "q"]}]]}]], "Output",
+ CellChangeTimes->{{3.6007772453420596`*^9, 3.6007772597150593`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"-", 
+  FractionBox[
+   RowBox[{
+    RowBox[{"-", "1"}], "+", 
+    SuperscriptBox["q", "4"], "+", 
+    SuperscriptBox["q", "5"], "+", 
+    SuperscriptBox["q", "6"]}], 
+   RowBox[{"1", "-", 
+    RowBox[{"2", " ", "q"}], "+", 
+    SuperscriptBox["q", "4"]}]]}]], "Output",
+ CellChangeTimes->{{3.6007772453420596`*^9, 3.6007772597160597`*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Series", "[", 
+  RowBox[{"%", ",", 
+   RowBox[{"{", 
+    RowBox[{"q", ",", "0", ",", "10"}], "}"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.6007772692060595`*^9, 3.60077727528006*^9}}],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"1", "+", 
+   RowBox[{"2", " ", "q"}], "+", 
+   RowBox[{"4", " ", 
+    SuperscriptBox["q", "2"]}], "+", 
+   RowBox[{"8", " ", 
+    SuperscriptBox["q", "3"]}], "+", 
+   RowBox[{"14", " ", 
+    SuperscriptBox["q", "4"]}], "+", 
+   RowBox[{"25", " ", 
+    SuperscriptBox["q", "5"]}], "+", 
+   RowBox[{"45", " ", 
+    SuperscriptBox["q", "6"]}], "+", 
+   RowBox[{"82", " ", 
+    SuperscriptBox["q", "7"]}], "+", 
+   RowBox[{"150", " ", 
+    SuperscriptBox["q", "8"]}], "+", 
+   RowBox[{"275", " ", 
+    SuperscriptBox["q", "9"]}], "+", 
+   RowBox[{"505", " ", 
+    SuperscriptBox["q", "10"]}], "+", 
+   InterpretationBox[
+    SuperscriptBox[
+     RowBox[{"O", "[", "q", "]"}], "11"],
+    SeriesData[$CellContext`q, 0, {}, 0, 11, 1],
+    Editable->False]}],
+  SeriesData[$CellContext`q, 0, {1, 2, 4, 8, 14, 25, 45, 82, 150, 275, 505}, 
+   0, 11, 1],
+  Editable->False]], "Output",
+ CellChangeTimes->{3.60077727567406*^9}]
+}, Open  ]],
+
+Cell["\<\
+Exercise :  the form of the generating function shows that f (n) satisfies \
+the recurrence
+
+                    f(n) = 2 f(n-1) - f(n-4)   for n > 6.
+                    
+Can you prove this directly?\
+\>", "Text",
+ CellChangeTimes->{{3.6007773252820597`*^9, 3.6007774043470592`*^9}, {
+  3.60087747314075*^9, 3.6008774748038454`*^9}, {3.600877552596295*^9, 
+  3.6008775688362236`*^9}}]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{1290, 1012},
+WindowMargins->{{66, Automatic}, {Automatic, 91}},
+PrintingCopies->1,
+PrintingPageRange->{Automatic, Automatic},
+Magnification:>FEPrivate`If[
+  FEPrivate`Equal[FEPrivate`$VersionNumber, 6.], 1.25, 1.25 Inherited],
+FrontEndVersion->"8.0 for Microsoft Windows (64-bit) (October 6, 2011)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[579, 22, 50, 0, 88, "Section"],
+Cell[CellGroupData[{
+Cell[654, 26, 34, 0, 46, "Subsection"],
+Cell[691, 28, 241, 5, 34, "Text"],
+Cell[935, 35, 112, 3, 34, "Text"],
+Cell[1050, 40, 183, 4, 34, "Text"],
+Cell[1236, 46, 183, 4, 34, "Text"],
+Cell[1422, 52, 53, 0, 34, "Text"],
+Cell[1478, 54, 106, 3, 34, "Text"],
+Cell[1587, 59, 106, 3, 34, "Text"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[1730, 67, 31, 0, 46, "Subsection"],
+Cell[1764, 69, 163, 3, 35, "Input"],
+Cell[CellGroupData[{
+Cell[1952, 76, 981, 25, 35, "Input"],
+Cell[2936, 103, 1501, 37, 99, "Output"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[4486, 146, 126, 1, 46, "Subsection"],
+Cell[4615, 149, 72, 0, 34, "Text"],
+Cell[CellGroupData[{
+Cell[4712, 153, 533, 14, 56, "Input"],
+Cell[5248, 169, 285, 8, 53, "Output"]
+}, Open  ]],
+Cell[5548, 180, 143, 3, 34, "Text"],
+Cell[CellGroupData[{
+Cell[5716, 187, 514, 13, 56, "Input"],
+Cell[6233, 202, 262, 6, 53, "Output"]
+}, Open  ]],
+Cell[6510, 211, 147, 3, 34, "Text"],
+Cell[CellGroupData[{
+Cell[6682, 218, 536, 14, 56, "Input"],
+Cell[7221, 234, 255, 7, 53, "Output"]
+}, Open  ]],
+Cell[7491, 244, 76, 0, 34, "Text"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[7604, 249, 99, 1, 46, "Subsection"],
+Cell[7706, 252, 254, 7, 76, "Text"],
+Cell[7963, 261, 108, 1, 34, "Text"],
+Cell[8074, 264, 632, 18, 58, "Input"],
+Cell[8709, 284, 110, 1, 34, "Text"],
+Cell[CellGroupData[{
+Cell[8844, 289, 514, 13, 56, "Input"],
+Cell[9361, 304, 140, 3, 53, "Output"]
+}, Open  ]],
+Cell[9516, 310, 108, 1, 34, "Text"],
+Cell[CellGroupData[{
+Cell[9649, 315, 588, 14, 56, "Input"],
+Cell[10240, 331, 168, 4, 53, "Output"]
+}, Open  ]],
+Cell[10423, 338, 109, 1, 34, "Text"],
+Cell[CellGroupData[{
+Cell[10557, 343, 584, 15, 79, "Input"],
+Cell[11144, 360, 115, 2, 53, "Output"],
+Cell[11262, 364, 99, 1, 35, "Output"]
+}, Open  ]],
+Cell[11376, 368, 111, 1, 34, "Text"],
+Cell[CellGroupData[{
+Cell[11512, 373, 186, 4, 35, "Input"],
+Cell[11701, 379, 71, 1, 35, "Output"]
+}, Open  ]],
+Cell[11787, 383, 113, 1, 34, "Text"],
+Cell[CellGroupData[{
+Cell[11925, 388, 184, 4, 35, "Input"],
+Cell[12112, 394, 71, 1, 35, "Output"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[12232, 401, 110, 1, 46, "Subsection"],
+Cell[12345, 404, 244, 5, 34, "Text"],
+Cell[CellGroupData[{
+Cell[12614, 413, 509, 12, 79, "Input"],
+Cell[13126, 427, 1199, 41, 109, "Output"],
+Cell[14328, 470, 363, 11, 59, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[14728, 486, 209, 5, 35, "Input"],
+Cell[14940, 493, 960, 30, 35, "Output"]
+}, Open  ]],
+Cell[15915, 526, 395, 10, 117, "Text"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
