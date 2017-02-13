@@ -123,6 +123,44 @@
 			Claim:  From our earlier definition of a martingale we know that $W_t$ is martingale if $E(W_{k+1} | W_1,W_2,...,W_k) = W_k$ for all $k$. Informally, we can see at each time $t$, the value of each of the gambler's winnings double or go to zero with a .5 chance each way. That means the expected value of each gambler's winnings at time $t+1$ is the value of their winnings at time $t$. This seems to indicate that the expected value of $W_{t+1}$ is just the value of $W_t$. Thus we can see that $W_t$ is a martingale. More formally... 
 		\end{claimproof}
 
+		Now we can find $E_{\varnothing}(\tau_{B})$. Note that the final payout of the game occurs at time $t=\tau_{B}$, when sequence $B$ fully appears. (Should I prove that $t=\tau_{B}$ is a stopping time?). First we need Doob's Martingale Convergence Theorem which states XXXX. 
+
+		\begin{theorem}(Doob's Martingale Convergence Theorem)
+			Let $W_t$ be a martingale and $\tau_B$ a stopping time. If,
+			$$\liminf\limits_{k\rightarrow \infty} \int_{\tau_B > k} |W_k|dP = 0$$
+			then $\{W_1, W_{\tau_B}\}$ is a martingale and $E(W_{\tau_B}) = E(W_1)$.
+		\end{theorem}
+
+		This theorem is saying... 
+
+		***
+		We know $W_t$ is a martingale with stopping time $\tau_B$. Since 
+		$$\lim_{k\rightarrow \infty} \int_{\tau_{AB}} |W_k|dP 
+		\leq \lim_{k\rightarrow \infty} \int_{\tau_{AB}} (BB + \tau_{AB}) dP = 0$$
+		we can use Doob's convergence theorem to find
+		$$E(W_{\tau_{AB}}) = E(W_0) = AB$$
+		From the fact that $W_{\tau_{AB}} = BB - \tau_{AB}$, it's true that,
+		$$E(\tau_{AB}) = BB - AB$$.
+		***What is $\tau_{AB}$? Make sure the logic is right here.
+
+		The payout at this time, $W_{\tau_{B}}$ is equal to $BB$, the amount won from betting on $B$ while sequence $B$ appears. So $E_{\varnothing}(\tau_{B}) = BB$. Now for $AB$, the first $k$ tosses (where $k$ is the length of A), the gamblers collectively make $AB$, ie $W_k = AB$. The total amount the gamblers make at $t = \tau_{B}$ is thus $BB - BA$ so $E_A(\tau_{B}) = BB - BA$. \cite{grinstead}.
+
+		Now what is $P(\tau_{B} < \tau_{A})$? Note that for two random variables, $X$, $Y$, $P(X > Y) = \frac{E(X)}{E(X) + E(Y)}$ \cite{grinstead}. So, $$P(\tau_{B} < \tau_{A}) = \frac{E_A(\tau_{B})}{E_A(\tau_{B}) + E_B(\tau_{A})} = \frac{AA - AB}{(BB - BA) + (AA - AB)}$$
+
+		***How does this gambling set up relate to the original Penney ante problem?
+		***Tie this section to Markov Chains. 
+
+		\begin{figure}[h]
+			\begin{center}
+				\includegraphics[width=4.0in]{Martingaletable}
+			\end{center}
+		
+			\caption{Calculation of $W_5$ for $A = B = HTH$. ***Should I show this table for 5 players?}
+			\label{fig}
+		\end{figure}
+
+		Figure XXX shows a table representing the winnings for each player during the game.
+
 	\section{Results}
 		\subsection{Markov Chains}
 			Using Markov chains, we can construct a system of equations for the expected waiting time to win and probability of a sequence winning. Let $p_{x}$ denote the probability sequence $A$ of length $n$ wins given that $x\in\Omega$ has occured. To find $p_\emptyset$, the probability of A winning given nothing has happened, we can construct a system of $n+1$ equations for each $X_t$ composed of probabilities times of reaching $x$ from $y$. Assuming $x$ -- $y$ means $P(x,y) > 0$,
