@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.9.4)  13 FEB 2017 14:56
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.9.4)  13 FEB 2017 15:53
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -471,24 +471,22 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <6> not available
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <10> not available
 (Font)              Font shape `T1/ptm/b/n' tried instead on input line 73.
- [2] [3] [4] [5]
-<Martingaletable.png, id=28, 428.60126pt x 220.825pt>
+ [2]
+LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <12> not available
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 112.
+ [3]
+<Martingaletable.png, id=21, 414.54875pt x 237.88875pt>
 File: Martingaletable.png Graphic file (type png)
 
 <use Martingaletable.png>
-Package pdftex.def Info: Martingaletable.png used on input line 176.
-(pdftex.def)             Requested size: 289.07999pt x 148.94261pt.
-LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <12> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 186.
- [6 <./Martingaletable.png>] [7]
+Package pdftex.def Info: Martingaletable.png used on input line 123.
+(pdftex.def)             Requested size: 158.99377pt x 91.23715pt.
+ [4 <./Martingaletable.png>] [5] [6] [7]
 <GameOfA.png, id=38, 1137.24875pt x 500.87125pt>
 File: GameOfA.png Graphic file (type png)
  <use GameOfA.png>
 Package pdftex.def Info: GameOfA.png used on input line 228.
 (pdftex.def)             Requested size: 289.07999pt x 127.31923pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
 
 <winning.png, id=39, 477.7047pt x 187.1793pt>
 File: winning.png Graphic file (type png)
@@ -499,7 +497,7 @@ Package pdftex.def Info: winning.png used on input line 236.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[8] [9 <./GameOfA.png> <./winning.png>] [10] [11] (./PartialCore.aux)
+[8 <./GameOfA.png>] [9 <./winning.png>] [10] [11] (./PartialCore.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
@@ -507,11 +505,11 @@ LaTeX Warning: There were multiply-defined labels.
 Here is how much of TeX's memory you used:
  5946 strings out of 493029
  85337 string characters out of 6136235
- 243006 words of memory out of 5000000
+ 242006 words of memory out of 5000000
  9366 multiletter control sequences out of 15000+600000
  64096 words of font info for 120 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 42i,15n,40p,934b,865s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 42i,15n,40p,916b,865s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist
@@ -522,7 +520,7 @@ rw/symbol/usyr.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/symbol/usyr.p
 fb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/
 texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-d
 ist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on PartialCore.pdf (11 pages, 209817 bytes).
+Output written on PartialCore.pdf (11 pages, 211528 bytes).
 PDF statistics:
  88 PDF objects out of 1000 (max. 8388607)
  58 compressed objects within 1 object stream
