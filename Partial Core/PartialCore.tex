@@ -18,7 +18,8 @@
 \newtheorem{definition}[theorem]{Definition}
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{corollary}[theorem]{Corollary}
-
+\newenvironment{claim}[1]{\par\noindent\underline{Claim:}\space#1}{}
+\newenvironment{claimproof}[1]{\par\noindent\underline{Proof:}\space#1}{\hfill $\blacksquare$}
 
 %include lines like this if you want to define your own commands 
 %to save typing
@@ -63,28 +64,28 @@
 		sequence $A$ or $B$ wins if it is the first sequence to appear within $(X_t)$ or more precisely, $A$ or $B$ wins if it is the lowest $i$ such that $A = a_1a_2...a_n = X_iX_{i+1}...X_n$ or $B = b_1b_2...b_n = X_iX_{i+1}...X_n$. Let $\tau_A$ and $\tau_B$ be random variables denoting
 		the number of turns required for $A$ or $B$ to appear the first time. We denote
 		the probability of $A$ winning as $P(\tau_A < \tau_B)$ and we denote the expected time for sequence
-		$A$ and $B$ to appear as $E(\tau_A)$ and $E(\tau_B)$. This notation will be used the entirety of the paper. 
+		$A$ and $B$ to appear as $E(\tau_A)$ and $E(\tau_B)$. This notation will be used throughout of the paper. 
 
-		As stated earlier, $E(\tau_A) < E(\tau_B)$ does not imply $P(\tau_A < \tau_B) > \frac{1}{2}$. To prove and understand this result, we will construct a Markov chain. A Markov chain is a stochastic sequence $(X_t)$ that has the probability that each state of the chain occurs -- ie each $X_k$ -- is based solely on the previous state, $X_{k-1}$ for all $k > 1$. Markov chains allow the sequence to be represented by a graph with all the possible states of the sequence as vertices edges connecting vertices denoting probabilities between that a state will occur after another state. More formally,
+		As stated earlier, $E(\tau_A) < E(\tau_B)$ does not imply $P(\tau_A < \tau_B) > \frac{1}{2}$. To prove and understand this result, we will construct a Markov chain. A Markov chain is a stochastic sequence $(X_t)$ that has the probability that each state of the chain occurs -- ie each $X_k$ -- is based solely on the previous state, $X_{k-1}$ for all $k > 1$. Markov chains allow the sequence to be represented by a graph with all the possible states of the sequence as vertices. Edges connecting vertices denote probabilities between that a state will occur after another state. More formally,
 
 		\begin{definition}[\cite{textbook}]
-			A Markov chain is a stochastic sequence such that
-			$$P(X_{k+1} = x | X_1X_2...X_k) = P(X_{k+1} = x  | X_k)$$
+			A {\em Markov chain} is a stochastic sequence such that
+			$$P(X_{k+1} = x | X_1, X_2, ..., X_k) = P(X_{k+1} = x  | X_k)$$
 			That is, the probability that each $x \in \Omega$ occurs given the entire history of
-			previous events is only dependent on the most recent event. Denote the probability
-			that event $y$ occurs given $x$ as $P(x,y)$. The matrix $P = P(x,y)$ for all $x,y \in \Omega$ is called the transition matrix of $(X_t)$.
+			previous states is only dependent on the most recent event. Denote the probability
+			that $P(X_{k+1}=y|X_k=x)$ as $P(x,y)$. The matrix $P = P(x,y)$ for all $x,y \in \Omega$ is called the transition matrix of $(X_t)$.
 		\end{definition}
 
-		The Penney ante game is a Markov chain because each sequence of coin flips, for example $X_4=HTHT$, depends only on the previous state $X_3$ and not the entire history of states. We can use Markov chains to find $E(\tau_A)$ and $P(\tau_A < \tau_B)$ by writing a system of equations for the probability and expected value of each state which will be done next section. 
+		The Penney ante game can be represented as a Markov chain because each sequence of coin flips, for example $X_4=HTHT$, depends only on the previous state $X_3$ and not the entire history of states. We can use Markov chains to find $E(\tau_A)$ and $P(\tau_A < \tau_B)$ by writing a system of equations for the probability and expected value of each state which will be done next section. 
 
 		We can also study the Penney ante problem using another mathematical object called a martingale. A martingale is a stochastic sequence such that regardless of the time, the expected value of the random variable is the same. Call a martingale with an expected value of 0 a fair game. More precisely,
 
 		\begin{definition}[\cite{li}]
-			A martingale is a stochastic sequence $(X_t)$ such that for any
+			A {\em martingale} is a stochastic sequence $(X_t)$ such that for any
 			integer $k$ and for any finite expected value $E(|X_k|)$, $$E(X_{k+1} | X_1, ..., X_k) = X_k$$		
 		\end{definition}
 
-	    Let's define a martingale on this game. Given a stochastic sequence of coin flips $(X_t)$, and for each $t$, define $W_t$, assuming $W_0=0$,
+	    Let's define a martingale representing the Penney Ante game. Given a stochastic sequence of coin flips $(X_t)$, and for each $t$, define $W_t$, assuming $W_0=0$,
 	    \[ W_{t+1}=\begin{cases} 
 	      W_{t} + 2^t & \text{if $X_t$ = some value that we are betting on}\\
 	      0 & \text{otherwise} 
@@ -92,18 +93,35 @@
 
 	    If $W_t$ were to be imagined as some game at the Monte Carlo casino, imagine at each turn $t$, a player joins the game and bets 1 choosing to play double or nothing until they lose, on each letter of some sequence. Denote "betting $AB$" as the player betting on the the $i$th character of $A$ and getting the $i$th character of $b$. On each subsequent turn, another player joins the game and bets on the same sequence. At each turn $t$, $W_t$ is the earnings of all the players during that turn. The players gamble until one player gets a match between the random coin flips and their own sequence. At this point, one player will have fully matched the sequence and the rest of the players will have partial matches along with some winnings. (What is this value at the time of winning, ie a stopping time, represent?). The proof that $W_t$ is a martingale will come later in this paper and at a later deadline. 
 
-		And finally, we will be using a combinatoric method for finding $E(\tau_A)$ based around finding the generating function for the number of $x \in \Omega$ which contain $x$ as a substring. A generating function in general can be formally defined as,
+		And finally, we will be using a combinatoric method for finding $E(\tau_A)$ based around finding the generating function for the number of $x \in \Omega$ which contain $A$ as a substring. For a given sequence $A$, let $f(n)$ denote the number of sequences of length $n$ that do not contain $A$ as a subsequence. A generating function in general can be formally defined as,
 		\begin{definition}[\cite{enumerate}]
 			Given any sequence $(X_t)$, we define its generating function $F(z)$ to be
 			$$F(z) = \sum_{n=0}^\infty f(n) z^{-n}$$
 			where $z$ is an unknown variable.
 		\end{definition}
 
-		For a given sequence $A$, let $f(n)$ denote the number of sequences of length $n$ that do not contain $A$ as a subsequence. The probability that A does not appear in the first $n$ coin tosses is $f(n)2^{-n}$ \cite{enumerate}. The expected number of coin tosses can be derived from these facts and will involve a number called the correlation of two strings, denoted $AB$. The correlation $AB$ will be better defined later when outlining Conway's algorithm. Conway devised a "magic algorithm" which let us compute $AB$ which will be used to find the expected winning time and the probability of A winning. This operation $AB$ has a careful connection to the $AB$ defined in the betting strategy. The correlation will give us the expected number of coin tosses until $A$ appears and it is also used to model the above gambling game. The connection between the two $AB$'s will come in a later section.
+		The probability that A does not appear in the first $n$ coin tosses is $f(n)2^{-n}$ \cite{enumerate}. The expected number of coin tosses can be derived from these facts and will involve a number called the correlation of two strings, denoted $AB$. The correlation $AB$ will be better defined later when outlining Conway's algorithm. Conway devised a "magic algorithm" which let us compute $AB$ which will be used to find the expected winning time and the probability of A winning. This operation $AB$ has a careful connection to the $AB$ defined in the betting strategy. The correlation will give us the expected number of coin tosses until $A$ appears and it is also used to model the above gambling game. The connection between the two $AB$'s will come in a later section.
 
 		An interesting property of $F(z)$ is that it is rational in this case so we can write it as $F(z) = \frac{P(z)}{Q(z)}$ for $Q(z) \neq 0$ and coprime $P(z)$, $Q(z)$. From $F(z)$ being rational, we can derive the main combinatoric result which will let us count the number subsequences of a sequence which are not equal to the sequence and thus the number of subsequences which are equal to the sequence.
 
 		Finally, we define nontransitivity. In this context, a game is nontransitive if for any sequence A, player B can choose a sequence B such that $P(\tau_A < \tau_B)$. In later sections we will see that the Penney ante game is nontransitive for $n \geq 4$. In general nontransitivity is....
+
+	\section{Martingales}
+	    If we reformulate the Penney ante problem into the following game with $W_t$ representing the total winnings of the game, we can see that $W_t$ is a martingale. Using martingales we can find $E_{\varnothing}(\tau_{B})$, $E_A(\tau_{B})$, and $P(\tau_{B} < \tau_{A})$. In this game imagine, given sequences $A$ and $B$, at each turn $t$, a player joins the game and bets 1 choosing to play double or nothing until they lose, on each letter of some sequence. On a player's ith turn, the player bets on the ith letter of $A$ appearing whereas the t-th letter of $B$ actually appears. We will denote this "betting $AB$". If the player's bet matches the actual outcome, they double their money, otherwise, they lose all of their money. On each subsequent turn, another player joins the game and also bets $AB$. At each turn $t$, $W_t$ is the earnings of all the players during that turn. The players gamble until one player gets a full match of sequence $A$. At this point, one player will have fully matched the sequence and the rest of the players will have partial matches along with some winnings.  
+
+		So given a stochastic sequence of coin flips $(X_t)$, and for each $t$, we can define $W_t$, assuming $W_0=0$, as, 
+	    \[ W_{t+1}=\begin{cases} 
+	      W_{t} + 2^t & \text{if $X_t$ = some value that we are betting on}\\
+	      0 & \text{otherwise} 
+		  \end{cases} \]
+
+		\begin{claim}
+			$W_t$ is a martingale.
+		\end{claim}
+
+		\begin{claimproof}
+			Claim:  From our earlier definition of a martingale we know that $W_t$ is martingale if $E(W_{k+1} | W_1,W_2,...,W_k) = W_k$ for all $k$. Informally, we can see at each time $t$, the value of each of the gambler's winnings double or go to zero with a .5 chance each way. That means the expected value of each gambler's winnings at time $t+1$ is the value of their winnings at time $t$. This seems to indicate that the expected value of $W_{t+1}$ is just the value of $W_t$. Thus we can see that $W_t$ is a martingale. More formally... 
+		\end{claimproof}
 
 	\section{Results}
 		\subsection{Markov Chains}
@@ -225,7 +243,9 @@
 			Breen, Stephen, Waterman Michael S., and Zhang Ning. "Renewal Theory for Several Patterns." Journal of Applied Probability 22.1 (1985): 228-34. Web.
 		\bibitem{gardner}
 			Gardner, Martin. "Mathematical Games: On the Paradoxical Situations That Arise from Nontransitive Relations." Scientific American 10 (1974): 120-25. Print.
-		\bibitem{guibas}
+		\bibitem{grinstead}
+ 			Grinstead, Charles M., and J. Laurie Snell. Introduction to Probability. Providence, RI: American Mathematical Society, 1997. Print. 
+ 		\bibitem{guibas}
 			Guibas, L.j, and A.m Odlyzko. "String Overlaps, Pattern Matching, and Nontransitive Games." Journal of Combinatorial Theory, Series A 30.2 (1981): 183-208. Web.
 		\bibitem{li}
 			Li, Shuo-Yen Robert. "A Martingale Approach to the Study of Occurrence of Sequence Patterns in Repeated Experiments." The Annals of Probability 8.6 (1980): 1171-176. Web.
