@@ -1,6 +1,7 @@
 \documentclass{article}
 
 \usepackage{amssymb}
+\usepackage{amsthm}
 \usepackage{amsmath}
 \usepackage{graphicx}
 \usepackage{mathptmx}
@@ -16,10 +17,11 @@
 %include these lines if you want to use the LaTeX "theorem" environments
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{definition}[theorem]{Definition}
+\newtheorem{claim}[theorem]{Claim}
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{corollary}[theorem]{Corollary}
-\newenvironment{claim}[1]{\par\noindent\underline{Claim:}\space#1}{}
-\newenvironment{claimproof}[1]{\par\noindent\underline{Proof:}\space#1}{\hfill $\blacksquare$}
+% \newenvironment{claim}[1]{\par\noindent\underline{Claim:}\space#1}{}
+% \newenvironment{claimproof}[1]{\par\noindent\underline{Proof:}\space#1}{\hfill $\blacksquare$}
 
 %include lines like this if you want to define your own commands 
 %to save typing
@@ -107,23 +109,30 @@
 		Finally, we define nontransitivity. In this context, a game is nontransitive if for any sequence A, player B can choose a sequence B such that $P(\tau_A < \tau_B)$. In later sections we will see that the Penney ante game is nontransitive for $n \geq 4$. In general nontransitivity is....
 
 	\section{Martingales}
-	    If we reformulate the Penney ante problem into the following game with $W_t$ representing the total winnings of the game, we can see that $W_t$ is a martingale. Using martingales we can find $E_{\varnothing}(\tau_{B})$, $E_A(\tau_{B})$, and $P(\tau_{B} < \tau_{A})$. In this game imagine, given sequences $A$ and $B$, at each turn $t$, a player joins the game and bets 1 choosing to play double or nothing until they lose, on each letter of some sequence. On a player's ith turn, the player bets on the ith letter of $A$ appearing whereas the t-th letter of $B$ actually appears. We will denote this "betting $AB$". If the player's bet matches the actual outcome, they double their money, otherwise, they lose all of their money. On each subsequent turn, another player joins the game and also bets $AB$. At each turn $t$, $W_t$ is the earnings of all the players during that turn. The players gamble until one player gets a full match of sequence $A$. At this point, one player will have fully matched the sequence and the rest of the players will have partial matches along with some winnings.  
+	    We can reformulate the Penney ante problem into a game found in (***reword) Grinstead. We will see that the sequence representing the total winnings of the game, $W_t$, is a martingale \cite{grinstead}. We can then find $E_{\varnothing}(\tau_{B})$ with the help of Doob's convergence theorem, and then $E_A(\tau_{B})$, and using some basic probability we find that $P(\tau_{B} < \tau_{A})$. This method allows us to prove that $E(\tau_A) < E(\tau_B)$ does not imply $P(\tau_A < \tau_B) > \frac{1}{2}$ and it also reveals the inner workings of Conway's algorithm. 
 
-		So given a stochastic sequence of coin flips $(X_t)$, and for each $t$, we can define $W_t$, assuming $W_0=0$, as, 
-	    \[ W_{t+1}=\begin{cases} 
-	      W_{t} + 2^t & \text{if $X_t$ = some value that we are betting on}\\
-	      0 & \text{otherwise} 
-		  \end{cases} \]
+	    Given sequences $A$ and $B$, imagine at each turn $t$, a player joins the game and bets 1 choosing to play double or nothing until either they lose or the sequence $B$ is found. On a player's $i$th turn, the player bets on the $i$th letter of $B$ appearing while in fact the $t$th letter of $A$ actually appears. The number of turns in the game is equal to the length of $A$. We will denote this betting strategy, betting on $B$ while $A$ appears, $AB$. At each turn if the player's bet matches the actual outcome, they double their money, otherwise they lose all of their money and stop playing. On each subsequent turn, another player joins the game and also bets $AB$. At each turn, $W_t$ is the earnings of all the players for time $t$. Note in this game the case where $B$ is a substring of $A$ is trivial because... \cite{grinstead} 
+
+	    How does this relate to the other game?...
+
+	    To prove that $E(\tau_B) = BB$, we must first show that $W_t$ is a martingale.
 
 		\begin{claim}
 			$W_t$ is a martingale.
 		\end{claim}
 
-		\begin{claimproof}
-			Claim:  From our earlier definition of a martingale we know that $W_t$ is martingale if $E(W_{k+1} | W_1,W_2,...,W_k) = W_k$ for all $k$. Informally, we can see at each time $t$, the value of each of the gambler's winnings double or go to zero with a .5 chance each way. That means the expected value of each gambler's winnings at time $t+1$ is the value of their winnings at time $t$. This seems to indicate that the expected value of $W_{t+1}$ is just the value of $W_t$. Thus we can see that $W_t$ is a martingale. More formally... 
-		\end{claimproof}
+		\begin{PROOF}
+			From our earlier definition of a martingale we know that $W_t$ is martingale if for each $k$, $E(W_{k+1} | W_1,W_2,...,W_k) = W_k$. Informally, we can see at each time $t$, the value of each of the gambler's winnings double or go to zero with a .5 chance each way. That means the expected value of each gambler's winnings at time $t+1$ is the value of their winnings at time $t$. This seems to indicate that the expected value of $W_{t+1}$ is just the value of $W_t$, making it a martingale. More formally, given a stochastic sequence of coin flips $(X_t)$, and for $t > 0$, we can define $W_t$ as, 
+		    \[ W_{t+1}=\begin{cases} 
+		      W_{t} + 2^t & \text{if $X_t$ = some value that we are betting on}\\
+		      0 & \text{otherwise} 
+			  \end{cases} \]
 
-		Now we can find $E_{\varnothing}(\tau_{B})$. Note that the final payout of the game occurs at time $t=\tau_{B}$, when sequence $B$ fully appears. (Should I prove that $t=\tau_{B}$ is a stopping time?). First we need Doob's Martingale Convergence Theorem which states XXXX. 
+			 Once we choose an $X_t$ to bet on, there is a .5 chance of the bet winning. So $E(W_{t+1}) = \frac{1}{2}(W_t + 2^t) + \frac{1}{2}(0)$. Find the right formula for Wt so this part works out*** \qed
+		\end{PROOF}
+
+
+		Now we can find $E_{\varnothing}(\tau_{B})$. Note that the final payout of the game occurs at time $t=\tau_{B}$, when sequence $B$ fully appears. The random variable $\tau_B$ is a stopping time. (Should I prove that $\tau_{B}$ is a stopping time?). First we need Doob's Martingale Convergence Theorem which states that if SOME QUANTITY INVOLVING A RANDOM VARIABLE*** converges to zero then the expected value of the random variable at time $t=\tau_B$ is equal to it's expected value at the stopping time. Formally,
 
 		\begin{theorem}(Doob's Martingale Convergence Theorem)
 			Let $W_t$ be a martingale and $\tau_B$ a stopping time. If,
@@ -131,35 +140,45 @@
 			then $\{W_1, W_{\tau_B}\}$ is a martingale and $E(W_{\tau_B}) = E(W_1)$.
 		\end{theorem}
 
-		This theorem is saying... 
+		As stated earlier, $W_t$ is indeed a martingale and $\tau_B$ is a stopping time. So we need to show $\liminf\limits_{k\rightarrow \infty} \int_{\tau_B > k} |W_k|dP = 0$. Because XXX we know that $W_{\tau_{AB}} = BB - \tau_{AB}$.
 
-		***
-		We know $W_t$ is a martingale with stopping time $\tau_B$. Since 
-		$$\lim_{k\rightarrow \infty} \int_{\tau_{AB}} |W_k|dP 
-		\leq \lim_{k\rightarrow \infty} \int_{\tau_{AB}} (BB + \tau_{AB}) dP = 0$$
-		we can use Doob's convergence theorem to find
+		$$E(W_{\tau_{AB}}) \leq BB + E(\tau_{AB}) < \infty$$
+
+		Let $Aw_k B$ represent the sequence XXX followed by XXX. Then for $\tau_{AB} > k$,
+		\begin{equation}
+		\begin{split}
+		W_k & \leq (Aw_k B) + k \\
+		    & \leq BB + \tau_{AB} \\
+		\end{split}
+		\end{equation}
+
+		This implies that,
+		$$\lim_{k\rightarrow \infty} \int_{\tau_{AB}} |W_k|dP \leq \lim_{k\rightarrow \infty} \int_{\tau_{AB}} (BB + \tau_{AB}) dP = 0$$
+
+		So now we are able to use Doob's convergence theorem to find that,
 		$$E(W_{\tau_{AB}}) = E(W_0) = AB$$
+
 		From the fact that $W_{\tau_{AB}} = BB - \tau_{AB}$, it's true that,
 		$$E(\tau_{AB}) = BB - AB$$.
-		***What is $\tau_{AB}$? Make sure the logic is right here.
 
-		The payout at this time, $W_{\tau_{B}}$ is equal to $BB$, the amount won from betting on $B$ while sequence $B$ appears. So $E_{\varnothing}(\tau_{B}) = BB$. Now for $AB$, the first $k$ tosses (where $k$ is the length of A), the gamblers collectively make $AB$, ie $W_k = AB$. The total amount the gamblers make at $t = \tau_{B}$ is thus $BB - BA$ so $E_A(\tau_{B}) = BB - BA$. \cite{grinstead}.
+		***Remember $\tau_{AB}$ is the random variable representing the time it takes for $B$ to appear starting with $A$.
+
+		***The payout at this time, $W_{\tau_{B}}$ is equal to $BB$, the amount won from betting on $B$ while sequence $B$ appears. So $E_{\varnothing}(\tau_{B}) = BB$. Now for $AB$, the first $k$ tosses (where $k$ is the length of A), the gamblers collectively make $AB$, ie $W_k = AB$. The total amount the gamblers make at $t = \tau_{B}$ is thus $BB - BA$ so $E_A(\tau_{B}) = BB - BA$. \cite{grinstead}.
 
 		Now what is $P(\tau_{B} < \tau_{A})$? Note that for two random variables, $X$, $Y$, $P(X > Y) = \frac{E(X)}{E(X) + E(Y)}$ \cite{grinstead}. So, $$P(\tau_{B} < \tau_{A}) = \frac{E_A(\tau_{B})}{E_A(\tau_{B}) + E_B(\tau_{A})} = \frac{AA - AB}{(BB - BA) + (AA - AB)}$$
 
 		***How does this gambling set up relate to the original Penney ante problem?
-		***Tie this section to Markov Chains. 
 
 		\begin{figure}[h]
 			\begin{center}
 				\includegraphics[width=4.0in]{Martingaletable}
 			\end{center}
 		
-			\caption{Calculation of $W_5$ for $A = B = HTH$. ***Should I show this table for 5 players?}
+			\caption{Calculation of $W_5$ for $A = B = HTH$.}
 			\label{fig}
 		\end{figure}
-
-		Figure XXX shows a table representing the winnings for each player during the game.
+		***Tie this section to Conway's algorithm. 
+		***Use the figure as an example to explain the game.
 
 	\section{Results}
 		\subsection{Markov Chains}
