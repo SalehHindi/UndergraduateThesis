@@ -6,3 +6,6 @@ Imagine a two player game where each player is assigned a sequence, for example 
 
 # Poster 
 ![Saleh's Thesis](http://i.imgur.com/KczPx55.jpg)
+
+# Contact
+For any questions comments concerns please contact shindi@haverford.edu
