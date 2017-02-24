@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.9.4)  24 FEB 2017 12:45
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.9.4)  24 FEB 2017 15:09
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -489,20 +489,20 @@ LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <12> not available
 [2] [3 <./AA.png>] <AB.png, id=24, 360.34625pt x 236.885pt>
 File: AB.png Graphic file (type png)
  <use AB.png>
-Package pdftex.def Info: AB.png used on input line 132.
+Package pdftex.def Info: AB.png used on input line 130.
 (pdftex.def)             Requested size: 180.67499pt x 118.77112pt.
 
 [4 <./AB.png>] [5] [6] <GameOfA.png, id=36, 1137.24875pt x 500.87125pt>
 File: GameOfA.png Graphic file (type png)
 
 <use GameOfA.png>
-Package pdftex.def Info: GameOfA.png used on input line 220.
+Package pdftex.def Info: GameOfA.png used on input line 218.
 (pdftex.def)             Requested size: 289.07999pt x 127.31923pt.
  <winning.png, id=37, 477.7047pt x 187.1793pt>
 File: winning.png Graphic file (type png)
 
 <use winning.png>
-Package pdftex.def Info: winning.png used on input line 228.
+Package pdftex.def Info: winning.png used on input line 226.
 (pdftex.def)             Requested size: 289.07999pt x 113.27382pt.
 
 
@@ -520,7 +520,7 @@ Here is how much of TeX's memory you used:
  9370 multiletter control sequences out of 15000+600000
  64096 words of font info for 120 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 42i,15n,40p,915b,865s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 42i,15n,40p,916b,865s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist
@@ -531,7 +531,7 @@ rw/symbol/usyr.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/symbol/usyr.p
 fb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/
 texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-d
 ist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on FirstDraft.pdf (11 pages, 216401 bytes).
+Output written on FirstDraft.pdf (11 pages, 216581 bytes).
 PDF statistics:
  90 PDF objects out of 1000 (max. 8388607)
  58 compressed objects within 1 object stream

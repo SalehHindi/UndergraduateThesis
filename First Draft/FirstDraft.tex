@@ -284,28 +284,45 @@
 
 		
 	\section{Generating Function}
-		And finally, we will be using a combinatoric method for finding $E(\tau_A)$ based around finding the generating function for the number of $x \in \Omega$ which contain $A$ as a substring. For a given sequence $A$, let $f(n)$ denote the number of sequences of length $n$ that do not contain $A$ as a subsequence. A generating function in general can be formally defined as,
+		For the final method of proving Conway's algorithm, we will be using a combinatoric method for finding $E(\tau_A)$ based around finding the generating function for the number of possible $X_t$, for a given $t$, which do not contain $A$ as a substring. Once we have this generating function, denoted $F(z)$, we can count XXXX. Then we will see that this method exemplifies Conway's algorithm. First, let's define a generating function. 
+
+		% For a given sequence $A$, let $f(n)$ denote the number of sequences of length $n$ that do not contain $A$ as a subsequence. A generating function in general can be formally defined as,
+
 		\begin{definition}[\cite{enumerate}]
-			Given any sequence $(X_t)$, we define its generating function $F(z)$ to be
+			Given any sequence $(X_t) = f(0), f(1), f(2), ...$, we define the {\em generating function} $F(z)$ as
 			$$F(z) = \sum_{n=0}^\infty f(n) z^{-n}$$
-			where $z$ is an unknown variable.
+			where $z \in \{0, 1, 2, ...\}$.
 		\end{definition}
 
-		Now that we have the correlation $AB$, we can also use the generating function approach the compute the desired values. The probability that $A$ does not appear in the first $n$ coin tosses is $f(n)2^{-n}$. The expected number of coin tosses until $A$ appears is,
-		$$\sum_{n=0}^\infty f(n) 2^{-n} = F(2)$$
-		From 
-		$$F(z) = \frac{zAA_z}{1+(z-q)AA_z}$$
-		we can get that $F(2) = 2AA$. \cite{enumerate} \cite{gardner}
+		Recall the value $AB$ from Conway's algorithm. This value, which Odlyzko defines as the correlation of strings $A$ and $B$, represents the amount of overlap between two strings \cite{enumerate}, and so it will be used in the generating function. 
+
+		\begin{claim} (\cite{enumerate} \cite{gardner})
+			Assuming $AA_z$ represents the correlation of $A$ with $A$ expressed in base $z$, then the generating function for a string of length $z$ that contains no occurences of string $A$ of length $q$ is, 
+			$$F(z) = \frac{zAA_z}{1+(z-q)AA_z}$$
+		\end{claim}
+
+		\begin{PROOF} (\cite{enumerate})
+			Let $f_A(n)$ be the number of strings of length $n$ such that only the last (rightmost) $q$ letters are $A$. Let,
+			$$F_A(z) = \sum^{\infty}_{n=0} f_A(n)z^{-n}$$ 
+			Then it follows both that (****Why does this follow? I really need to explain the jumps between these steps) 
+			$$(z-q)F(z) + zF_A(z) = z$$
+			$$F(z) = zAA_zF_A(z)$$
+			Finally we can see that 
+			$$F(z) = \frac{zAA_z}{1+(z-q)AA_z}$$ 
+			\qed
+		\end{PROOF}
+
+		% 
+		We can get that $F(2) = AA$.
+		The probability that $A$ does not appear in the first $n$ coin tosses is $f(n)2^{-n}$. The expected number of coin tosses until $A$ appears is,
+		$$F(2) = \sum_{n=0}^\infty f(n) 2^{-n}$$
+		% 
 
 		The probability that A does not appear in the first $n$ coin tosses is $f(n)2^{-n}$ \cite{enumerate}. The expected number of coin tosses can be derived from these facts and will involve a number called the correlation of two strings, denoted $AB$. The correlation $AB$ will be better defined later when outlining Conway's algorithm. Conway devised a "magic algorithm" which let us compute $AB$ which will be used to find the expected winning time and the probability of A winning. This operation $AB$ has a careful connection to the $AB$ defined in the betting strategy. The correlation will give us the expected number of coin tosses until $A$ appears and it is also used to model the above gambling game. The connection between the two $AB$'s will come in a later section.
 
-	\section{Results}
-		\subsection{Martingales}
-			The betting game described earlier creates a martingale process, $(W_t)$. Notice how $(X_t)$ and $(W_t)$ derive from the same source of randomness, the independently and uniformly chosen coin flips. Although martingales do not directly give us an easy way to compute the expected waiting time and probability of a sequence winning, it provides a justification to Conway's algorithm. Counting all of the string overlaps of $AB$ is checking the earnings of all the player for partial matches between sequences $A$ and $B$. In binary, moving up each of the digits correspong to the player betting double or nothing. I will go into further detail about martingales and the connection between string enumeration and Conway's algorithm at a future date but know that for now, Conway's algorithm serves as our method of computing the expected waiting time and probability using the martingale approach.
-
-
-	\section{Future Work}
-		In the future I will prove the results stated in the results section. It will also be worthwhile to give a proof of the nontransitivity property which was not stated in the results.
+	\section{Conclusion}
+		***Add conclusion 
+		% The betting game described earlier creates a martingale process, $(W_t)$. Notice how $(X_t)$ and $(W_t)$ derive from the same source of randomness, the independently and uniformly chosen coin flips. Although martingales do not directly give us an easy way to compute the expected waiting time and probability of a sequence winning, it provides a justification to Conway's algorithm. Counting all of the string overlaps of $AB$ is checking the earnings of all the player for partial matches between sequences $A$ and $B$. In binary, moving up each of the digits correspong to the player betting double or nothing. I will go into further detail about martingales and the connection between string enumeration and Conway's algorithm at a future date but know that for now, Conway's algorithm serves as our method of computing the expected waiting time and probability using the martingale approach.
 
 	\begin{thebibliography}{1}
 		\bibitem{boyer}
